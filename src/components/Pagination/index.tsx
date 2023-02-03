@@ -18,6 +18,7 @@ const Pagination = () => {
         <PaginationItem number={2} />
         <PaginationItem number={3} />
         <PaginationItem number={4} />
+        <PaginationItem number={5} />
       </Stack>
     </Stack>
   );
