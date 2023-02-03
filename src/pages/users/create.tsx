@@ -1,6 +1,6 @@
 import Input from "@/components/Form/Input";
 import Header from "@/components/Header/Header";
-import Sibebar from "@/components/Sibebar";
+import Sibebar from "@/components/Sidebar";
 import {
   Box,
   Button,

@@ -1,6 +1,6 @@
 import Header from "@/components/Header/Header";
 import Pagination from "@/components/Pagination";
-import Sibebar from "@/components/Sibebar";
+import Sibebar from "@/components/Sidebar";
 import {
   Box,
   Button,
