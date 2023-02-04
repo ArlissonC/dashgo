@@ -69,7 +69,7 @@ const Dashboard = () => {
           minChildWidth="320px"
           alignContent="flex-start"
         >
-          <Box p="8" bg="gray.800" pb="4" borderRadius={8}>
+          <Box p={["6", "8"]} bg="gray.800" pb="4" borderRadius={8}>
             <Text fontSize="lg" mb="4">
               Inscritos da semana
             </Text>
@@ -81,7 +81,7 @@ const Dashboard = () => {
               width="100%"
             />
           </Box>
-          <Box p="8" bg="gray.800" borderRadius={8}>
+          <Box p={["6", "8"]} bg="gray.800" borderRadius={8}>
             <Text fontSize="lg" mb="4">
               Taxa de abertura
             </Text>
