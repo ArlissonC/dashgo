@@ -1,7 +1,16 @@
-import Input from "@/components/Form/Input";
+import { Input } from "@/components/Form/Input";
 import { Flex, Button, Stack } from "@chakra-ui/react";
+import { SubmitHandler, useForm, FieldValues } from "react-hook-form";
 
 export default function Home() {
+  const { register, handleSubmit, formState } = useForm();
+
+  const { errors } = formState;
+
+  const handleSignIn: SubmitHandler<FieldValues> = (values) => {
+    console.log(values);
+  };
+
   return (
     <Flex w="100vw" h="100vh" align="center" justify="center">
       <Flex
@@ -12,11 +21,11 @@ export default function Home() {
         p="8"
         borderRadius={8}
         direction="column"
+        onSubmit={handleSubmit(handleSignIn)}
       >
         <Stack spacing="4">
           <Input
             label="E-mail"
-            name="email"
             type="email"
             id="email"
             focusBorderColor="pink.500"
@@ -26,10 +35,10 @@ export default function Home() {
               bgColor: "gray.900",
             }}
             size="lg"
+            {...register("email")}
           />
           <Input
             label="Senha"
-            name="password"
             type="password"
             id="password"
             focusBorderColor="pink.500"
@@ -39,9 +48,15 @@ export default function Home() {
               bgColor: "gray.900",
             }}
             size="lg"
+            {...register("password")}
           />
         </Stack>
-        <Button type="submit" mt="6" colorScheme="pink">
+        <Button
+          type="submit"
+          mt="6"
+          colorScheme="pink"
+          isLoading={formState.isLoading}
+        >
           Entrar
         </Button>
       </Flex>
