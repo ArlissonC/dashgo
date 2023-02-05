@@ -65,7 +65,7 @@ export default function Home() {
           type="submit"
           mt="6"
           colorScheme="pink"
-          isLoading={!formState.isLoading}
+          isLoading={formState.isSubmitting}
         >
           Entrar
         </Button>
