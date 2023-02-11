@@ -3,6 +3,7 @@ import Pagination from "@/components/Pagination";
 import Sibebar from "@/components/Sidebar";
 import { api } from "@/services/api";
 import { useUsers } from "@/services/hooks/useUsers";
+import { queryClient } from "@/services/queryClient";
 import {
   Box,
   Button,
@@ -19,8 +20,9 @@ import {
   Text,
   useBreakpointValue,
   Spinner,
+  Link,
 } from "@chakra-ui/react";
-import Link from "next/link";
+import NextLink from "next/link";
 import { useState } from "react";
 import { RiAddLine, RiPencilLine } from "react-icons/ri";
 import { useQuery } from "react-query";
@@ -32,6 +34,14 @@ const UserList = () => {
     base: false,
     lg: true,
   });
+
+  const handlePrefetchUser = async (userId: string) => {
+    await queryClient.prefetchQuery(["user", userId], async () => {
+      const response = await api.get(`users/${userId}`);
+
+      response.data;
+    });
+  };
 
   return (
     <Box>
@@ -46,7 +56,7 @@ const UserList = () => {
                 <Spinner ml="4" size="sm" color="gray.500" />
               )}
             </Heading>
-            <Link href="/users/create" passHref>
+            <NextLink href="/users/create" passHref>
               <Button
                 size="sm"
                 fontSize="sm"
@@ -55,7 +65,7 @@ const UserList = () => {
               >
                 Criar novo
               </Button>
-            </Link>
+            </NextLink>
           </Flex>
           {isLoading ? (
             <Flex justify="center">
@@ -86,7 +96,12 @@ const UserList = () => {
                       </Td>
                       <Td>
                         <Box>
-                          <Text fontWeight="bold">{user.name}</Text>
+                          <Link
+                            color="purple.400"
+                            onMouseEnter={() => handlePrefetchUser(user.id)}
+                          >
+                            <Text fontWeight="bold">{user.name}</Text>
+                          </Link>
                           <Text fontSize="sm" color="gray.300">
                             {user.email}
                           </Text>
